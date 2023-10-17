@@ -1,0 +1,82 @@
+1.	Using while loop
+
+import random
+num_of_dice = int(input("How many dice do you want to roll?: "))
+dice = 1
+result = 0
+while dice <= num_of_dice:
+    i = int(random.randint(1,6))
+    print(f"We got {i}")
+    result += i
+    dice += 1
+print(f"The sum of rolling  {num_of_dice} dice is {result}")
+
+OR using for loop
+
+import random
+num_of_dice = int(input("How many dice do you want to roll?: "))
+result = 0
+for dice in range (0, num_of_dice):
+    i = int(random.randint(1,6))
+    print(f"We got {i}")
+    result += i
+print(f"The sum of rolling  {num_of_dice} dice is {result}")
+
+
+
+2.	(one option)
+numbers = []
+num = input("Please enter the number: ")
+while num != "":
+    numbers.append(float(num))
+    num = input("Please enter the number: ")
+numbers.sort(reverse=True)
+print(numbers)
+print(numbers[:5])
+
+(other option)
+numbers = []
+num = input("Please enter the number: ")
+while num != "":
+    numbers.append(float(num))
+    num = input("Please enter the number: ")
+numbers.sort()
+print(numbers)
+print(numbers[-5:])
+
+3.
+number = int(input("Enter the integer greater than 1: "))
+count = 0
+for i in range(2, number):
+    if number % i == 0:
+        count += 1
+if count == 0:
+    print(f"The number {number} is a prime number.")
+else:
+    print(f"The{number} is not a prime number.")
+
+OR
+
+number = int(input("Enter the integer greater than 1: "))
+count = 0
+checker = 1
+while checker <= number:
+    if number % checker == 0:
+        count += 1
+    checker += 1
+else:
+    checker += 1
+if count == 2:
+    print(f"The number {number} is a prime number.")
+else:
+    print(f"The{number} is NOT a prime number.")
+
+
+4.
+
+cities = []
+for i in range(5):
+    cities.append(input("Please, enter the city: "))
+    i += 1
+for i in cities:
+    print(i)
