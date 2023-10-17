@@ -1,0 +1,48 @@
+1.
+length = float(input("Enter the length of the zander in cm: "))
+if length < 42:
+    print(f"Let him go! It is less than required length by {42 - length} cm")
+else:
+    print("Take him home!")
+
+
+2.
+cabin_class = input("What is your cabin class?: ")
+
+if cabin_class == "LUX":
+    print(" \nUpper-deck cabin with a balcony")
+elif cabin_class == "A":
+    print(" \nAbove the car deck, equipped with a window.")
+elif cabin_class == "B":
+    print(" \nWindowless cabin above the car deck.")
+elif cabin_class == "C":
+    print(" \nWindowless cabin below the car deck.")
+else:
+    print("Invalid cabin class")
+
+
+3.
+gender = input("Enter your gender (F or M): ")
+hemoglobin = int(input("Enter your hemoglobin value (in g/l): "))
+if gender == "F" and 117 <= hemoglobin<= 155:
+    print("Your hemoglobin level is normal.")
+elif gender == "F" and hemoglobin<117:
+    print("Your hemoglobin level is low.")
+elif gender == "F" and hemoglobin>155:
+    print("Your hemoglobin level is high.")
+elif gender == "M" and 134 <= hemoglobin<= 167:
+    print("Your hemoglobin level is normal.")
+elif gender == "M" and hemoglobin<134:
+    print("Your hemoglobin level is low.")
+elif gender == "M" and hemoglobin>167:
+    print("Your hemoglobin level is high.")
+
+
+4.
+year = int(input("Please enter the year: "))
+if year % 4 != 0:
+    print("It is NOT a leap year")
+elif year % 400 != 0 and year % 100 == 0:
+    print("It is NOT a leap year")
+else:
+    print("It is a leap year.")
