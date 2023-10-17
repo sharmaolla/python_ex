@@ -1,0 +1,64 @@
+1.
+name = input("Please enter your name: ")
+print("Hello, " + name + "!")
+
+2.
+import math
+
+radius = float(input("Enter the radius (in cm): "))
+a = math.pi * (radius**2)
+print(f"The area of the circle is {a:.3f} square cm")
+
+3.import math
+
+length = float(input("Enter the length of the rectangle (in cm):  "))
+width = float(input("Enter the width of the rectangle (in cm):  "))
+print(f"The area of the rectangle is {length * width} square sm")
+print(f"The perimeter of the rectangle is {2*(length + width)}sm")
+
+
+4. 
+
+num1 = int(input("Please enter the first number: "))
+num2 = int(input("Please enter the second number: "))
+num3 = int(input("Please enter the third number: "))
+print(f"The sum of these numbers is: {num1 + num2 + num3}")
+print(f"The product of these numbers is: {num1 * num2 * num3}")
+print(f"The average of these numbers is: {(num1 + num2 +num3) / 3}")
+
+
+5.
+talents = float(input("Please enter talents: "))
+pounds = float(input("Please enter pounds: "))
+lots = float(input("Please enter lots: "))
+in_grams = (talents* 0.0133* 32 *20) + (pounds * 0.0133 * 32) + (lots * 0.0133)
+print(f"The weight in modern units is: {int(in_grams)} kg and {(in_grams - int(in_grams)) * 1000:.2f} gr")
+
+
+6.
+import random
+a = random.randint(0, 9)
+b = random.randint(0, 9)
+c = random.randint(0, 9)
+print(a, b, c)
+print()
+a = random.randint(1, 6)
+b = random.randint(1, 6)
+c = random.randint(1, 6)
+d = random.randint(1, 6)
+print(a, b, c, d)
+
+OR
+
+import random
+n=1
+while n <= 3:
+    i = random.randint(0, 9)
+    print(i, end=" ")
+    n += 1
+print()
+n = 1
+while n <= 4:
+    i = random.randint(0, 9)
+    print(i, end=" ")
+    n += 1
