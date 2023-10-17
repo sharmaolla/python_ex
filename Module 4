@@ -1,0 +1,57 @@
+1.
+for i in range(1, 1000):
+    while 1 <= i <= 1000 and i % 3 == 0:
+        print(i, end=" ")
+        i += 1
+
+2.
+inch = float(input("Enter length in inches: "))
+while inch >= 0:
+    print(f"{inch} is equal to {inch * 2.54} cm")
+    inch = float(input("Enter length in inches: "))
+else:
+    print("Invalid input value.")
+
+
+
+3.
+numbers = []
+num = input("Give me a number: ")
+while num != "":
+    numbers.append(float(num))
+    num = input("Give me a number: ")
+numbers.sort()
+print(f"The smallest number is {numbers[0]} and the largest number is {numbers[-1]}")
+
+
+4.
+import random
+
+comp_num = random.randint(1, 100)
+user_num = int(input("Enter the number: "))
+while user_num != comp_num:
+    if user_num < comp_num:
+       print("too low! Try again.")
+    else:
+       print("too high! Try again.")
+    user_num = int(input("Enter the number: "))
+else:
+    print(f"You got it! I had number {comp_num}")
+
+
+5.
+user_name = input("Enter your user name: ")
+password = input("Enter your password: ")
+n = 1
+while n < 5:
+    if user_name != "python" or password != "rules":
+        print("Try again!")
+        user_name = input("Enter your user name: ")
+        password = input("Enter your password: ")
+        n += 1
+    elif n < 5 and user_name == "python" and password == "rules":
+        print("Welcome!")
+        break
+else:
+        print("Access denied!")
+
