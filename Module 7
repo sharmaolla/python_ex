@@ -1,0 +1,23 @@
+1.
+
+season_tuple = ('Winter','Winter', 'Spring', 'Spring','Spring', 'Summer', 'Summer', 'Summer', 'Autumn', 'Autumn', 'Autumn', 'Winter')
+month_number = int(input("Please, enter the month number: "))
+season = season_tuple[month_number - 1]
+print(f"The month number {month_number} is in {season}.")
+
+
+2.
+set2 = set()
+
+name = input("Please enter the name: ")
+while name != "":
+    if name in set2:
+        print("Existing name")
+        name = input("Please enter the name: ")
+    else:
+        set2.add(name)
+        print("New name")
+        name = input("Please enter the name: ")
+else:
+    for i in set2:
+        print(i)
