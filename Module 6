@@ -1,0 +1,121 @@
+1.
+import random
+def dice_rolling():
+    i = (random.randint(1,6))
+    print(i)
+    return i
+
+while dice_rolling() <6:
+    print("Let's roll again")
+else:
+    print("Yeh! We got SIX!")
+
+
+2.
+
+import random
+def dice():
+   num = random.randint(1, user_wish)
+   print(num)
+   return num
+
+user_wish =int(input("How many side dice?: "))
+while dice() != user_wish:
+    dice
+else:
+    print(f"Oh! We got {user_wish}")
+
+
+3.
+
+def converter(gallon):
+    litre = gallon * 3.79
+    print(f"{gallon} gallons is equal to {litre:.2f} litres")
+    return
+
+gallon = float(input("Enter the value in gallons: "))
+while gallon >= 0:
+    converter(gallon)
+    break
+else:
+    print("Invalid value.")
+
+
+4.
+
+# Uusing random list
+
+import random
+def sum_of_num(numbers):
+    print(numbers)
+    print(f"The sum of all the numbers is {sum(numbers)}")
+
+
+numbers = []
+for n in range (1, 6):
+    i = random.randint(1, 10)
+    numbers.append(i)
+sum_of_num(numbers)
+
+# OR
+
+import random
+
+
+def sum1(list):
+    summa = 0
+    for i in list:
+        summa += i
+    print(f"The sum is {summa}")
+    return
+
+list = []
+for n in range(5):
+    i = random.randint(1, 10)
+    list.append(i)
+print(list)
+sum1(list)
+
+
+
+5.
+
+import random
+
+def cut_down(list):
+    new_list = []
+    for i in list:
+        if i % 2 == 0:
+            new_list.append(i)
+    print(new_list)
+    return
+
+
+list = []
+for n in range(20):
+    lus = random.randint(1, 50)
+    list.append(lus)
+print(list)
+cut_down(list)
+
+
+
+6. 
+
+
+import math
+
+def calculate(diameter, price):
+    area = 2 * math.pi * ((diameter/2)**2)
+    price_per_unit = price / area
+    print(f"The price per unit is {price_per_unit:.5f}")
+    return price_per_unit
+
+diameter1 = float(input("Enter the 1st pizza's diameter: "))
+price1 = float(input("Enter the 1st pizza's price: "))
+diameter2 = float(input("Enter the 2nd pizza's diameter: "))
+price2 = float(input("Enter the 2nd pizza's price: "))
+if calculate(diameter1, price1) > calculate(diameter2, price2):
+    print("The pizza is more expensive, go for the second option.")
+else:
+    print("Buy the first pizza.")
