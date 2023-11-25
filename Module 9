@@ -1,0 +1,93 @@
+1.
+class Car:
+    def __init__(self, reg_number, max_sped, current_speed = 0, travelled_distance = 0):
+        self.reg_number = reg_number
+        self.max_speed = max_sped
+        self.current_speed = current_speed
+        self.travelled_distance = travelled_distance
+
+car = Car("ABC - 123", "142 km/h")
+print(f"This car's registration number is {car.reg_number} and its maximum speed is {car.max_speed}.")
+
+2.
+class Car:
+    def __init__(self, reg_number, max_speed, current_speed = 0, travelled_distance = 0):
+        self.reg_number = reg_number
+        self.max_speed = max_speed
+        self.current_speed = current_speed
+        self.travelled_distance = travelled_distance
+
+    def accelerate(self,speed_change):
+        self.speed_change = speed_change
+        self.current_speed = self.current_speed + self.speed_change
+        if self.current_speed < 0 or self.current_speed > self.max_speed:
+            print(f"{self.current_speed} km/h!!! Check the speed!!!")
+        else:
+            print(f"Current speed is {car.current_speed} km/h ")
+
+
+car = Car("ABC - 123", 142 )
+car.accelerate(30)
+car.accelerate(70)
+car.accelerate(50)
+car.accelerate(-200)
+
+3.
+class Car:
+    def __init__(self, reg_number, max_speed, current_speed = 0, travelled_distance = 0):
+        self.reg_number = reg_number
+        self.max_speed = max_speed
+        self.current_speed = current_speed
+        self.travelled_distance = travelled_distance
+
+    def accelerate(self,speed_change):
+        self.speed_change = speed_change
+        self.current_speed = self.current_speed + self.speed_change
+        if self.current_speed < 0 or self.current_speed > self.max_speed:
+            print(f"{self.current_speed} km/h!!! Check the speed!!!")
+        else:
+            print(f"Current speed is {car.current_speed} km/h ")
+    def drive(self, hours):
+        self.hours = hours
+        car.travelled_distance = (self.current_speed * self.hours) + self.travelled_distance
+        print(f"Travelled distance is {car.travelled_distance} km.")
+
+car = Car("ABC-123", 150, 60, 2000)
+car.accelerate(50)
+car.drive(1.5)
+
+4.
+import random
+
+class Car:
+    def __init__(self, reg_number, max_speed, current_speed, travelled_distance):
+        self.reg_number = reg_number
+        self.max_speed = max_speed
+        self.current_speed = current_speed
+        self.travelled_distance = travelled_distance
+
+    def accelerate(self, acceleration):
+        self.acceleration = acceleration
+        self.current_speed = min(max(self.current_speed + self.acceleration, 0), self.max_speed)
+
+
+    def drive(self, hours):
+        self.hours = hours
+        car.travelled_distance = (self.current_speed * self.hours) + self.travelled_distance
+
+car_list = []
+for i in range(10):
+    car_list.append(Car("ABC-" + str(i+1), random.randint(100, 200),0 ,0))
+
+finish = 0
+while finish < 10000:
+    for car in car_list:
+        car.accelerate(random.randint(-10, 15))
+        car.drive(1.)
+        finish = max(car.travelled_distance, finish)
+
+for car in car_list:
+    print(f"This car's registration number: {car.reg_number} and maximum speed is {car.max_speed}, "
+              f"current speed is {car.current_speed}, travelled distance is {car.travelled_distance}")
+
+
