@@ -1,4 +1,4 @@
-1.
+
 
 from flask import Flask, Response
 import json
@@ -31,3 +31,32 @@ def prime(number):
 
 if __name__ == '__main__':
     app.run(use_reloader=True, host='127.0.0.1', port=5000)
+
+2.
+'''
+Implement a backend service that gets the ICAO code of an airport and then returns the name and location
+ of the airport in JSON format. The information is fetched from the airport database used on this course.
+  For example, the GET request for EFHK would be: http://127.0.0.1:5000/airport/EFHK. Th
+  e response must be in the format of: {"ICAO":"EFHK", "Name":"Helsinki-Vantaa Airport", "Location":"Helsinki"}.
+'''
+(PARTIALLY DONE)
+import mysql.connector
+
+
+connection = mysql.connector.connect(
+         host='127.0.0.1',
+         port=3306,
+         database='flight_game',
+         user='dbuser',
+         password='sha******',
+         autocommit=True
+         )
+
+request = "SELECT ident,name, municipality FROM airport WHERE id = 2307"
+cursor = connection.cursor()
+cursor.execute(request)
+response = cursor.fetchall()
+print(response)
+
+
+
