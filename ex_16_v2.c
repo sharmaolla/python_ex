@@ -26,15 +26,13 @@ nnode *getNewNode(const int number)
 void PrintList(const nnode *first)
 {
     printf("List:\n");
-    const nnode *t;
 
     if(first == NULL)
     {
         printf("List is empty\n");
     }
     else{
-        nnode *ptr = NULL;
-        ptr = first;
+        const nnode *ptr = first;
         while(ptr != NULL)
         {
             printf("%-8d", ptr->number);
