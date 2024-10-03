@@ -71,7 +71,6 @@ int main()
         {
             status = false;
             PrintList(first);
-            //break;
         }
         else if(sscanf(input, "%d", &number) != 0)
         {
