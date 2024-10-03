@@ -96,7 +96,7 @@ int main()
             break;
         }
     }
-    fflush(stdin); // difference with fgets?
+   // fflush(stdin); difference with fgets?
     CleanUp(first);
 
     first = NULL;
