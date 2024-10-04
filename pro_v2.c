@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <string.h>
-#include <stdlib.h>
 #include <stdbool.h>
 #include <ctype.h>
 
@@ -38,7 +37,7 @@ int check_input(char *input) { // input validation function --------------------
             return status_number;
         }
     }
-}   // function ends--------------------------------------------------------------------
+}   // ----------------------------------------------------------------------------------
 
 
 int fill_struct(FILE *file, record *records, int line){
@@ -53,14 +52,14 @@ int fill_struct(FILE *file, record *records, int line){
 
     } while (!feof(file));  // check if array is full   while (!feof(file) || line = 101);*/
     return line;
-} //function ends----------------------------------------------------------------------------------------
+} //----------------------------------------------------------------------------------------
 
-void print_temp(char *input, record *records, int lines_read){ // print output function
-    for (int i = 0; input[i] != '\0'; i++) {
+void print_temp(char *input, record *records, int line){ // print output function
+    for (int i = 0; input[i] != '\0'; i++) {   // valid input(room name) to upprecase
         input[i] = toupper(input[i]);
     }
-    printf("\033[4m%s\033[0m\n", input);
-    for (int i = 0; i < lines_read; i++){
+    printf("\033[4m%s\033[0m\n", input); // underscore room name
+    for (int i = 0; i < line; i++){
         if(strcasecmp(records[i].room, input)== 0){
             printf("%4.1f", records[i].temp);
             if (records[i].temp < 0 || records[i].temp > 30){
@@ -69,14 +68,14 @@ void print_temp(char *input, record *records, int lines_read){ // print output f
             else{
                 printf(" ");  // insert space before dashes?
                 int dash = records[i].temp/0.5;
-                for(int j = 0; j <dash; j++){
+                for(int i= 0; i < dash; i++){
                     printf("-");
                 }
             }
             printf("\n");
         }
     }
-} //function ends ----------------------------------------------------------------------------------------
+} // ----------------------------------------------------------------------------------------
 int main(){
     FILE *file;
 
@@ -103,13 +102,11 @@ int main(){
                 }
                 fgets(buffer, BUFFER_SIZE, file);  // read in the 1st line
 
-                int lines_read =fill_struct(file, records, line); // function 2: fill in the array of structures
+                line =fill_struct(file, records, line); // function 2: fill in the array of structures
 
                 fclose(file);
 
-                //printf("There are %d lines in the file.\n", lines_read);
-
-                print_temp(input, records, lines_read); // function 3: print the result
+                print_temp(input, records, line); // function 3: print the result
             }
             else if(status == 0){
                 prog_run = false;
