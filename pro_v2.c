@@ -5,12 +5,12 @@
 
 #define INPUT_SIZE 30
 #define BUFFER_SIZE 200
+#define ARRAY_SIZE 100
 
 typedef struct{
     double temp;
     char room[50];
 }record;
-
 
 int check_input(char *input) { // input validation function --------------------------------------------
     int status_number;
@@ -50,7 +50,7 @@ int fill_struct(FILE *file, record *records, int line){
             printf("Incorrect file format.\n"); //???
         }
 
-    } while (!feof(file));  // check if array is full   while (!feof(file) || line = 101);*/
+    } while (!feof(file) && line < ARRAY_SIZE);  // check if array is full
     return line;
 } //----------------------------------------------------------------------------------------
 
@@ -82,7 +82,7 @@ int main(){
     char input[INPUT_SIZE];
     char buffer[BUFFER_SIZE];
     bool prog_run = true;
-    record records[100];
+    record records[ARRAY_SIZE];
 
     while(prog_run) {
         int line = 0; // initially no lines read
@@ -103,6 +103,7 @@ int main(){
                 fgets(buffer, BUFFER_SIZE, file);  // read in the 1st line
 
                 line =fill_struct(file, records, line); // function 2: fill in the array of structures
+                printf("%d lines were read.\n", line);
 
                 fclose(file);
 
