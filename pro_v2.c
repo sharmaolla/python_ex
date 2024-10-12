@@ -262,3 +262,158 @@ void print_temp(char *input, record *records, int line){ // print output functio
     }
     return 0;
 }*/
+
+---------------------------final version
+    #include <stdio.h>
+#include <string.h>
+#include <stdbool.h>
+#include <ctype.h>
+
+#define INPUT_SIZE 30
+#define BUFFER_SIZE 200
+#define ARRAY_SIZE 100
+
+typedef struct{
+    double temp;
+    char room[50];
+}record;
+
+int fill_struct(FILE *file, record *records, char *buffer, int line, int *error);
+int check_input(char *input, record *records, int line);
+void print_temp(char *input, record *records, int line);
+
+int fill_struct(FILE *file, record *records, char *buffer, int line, int *error){
+
+    while(line < ARRAY_SIZE){
+        int read = fscanf(file, "%lf,%49[^\n]", &records[line].temp, records[line].room);
+        if(read == 2){
+            line++;
+        }
+        else if (read == EOF){
+            break;
+        }
+        else{
+            (*error)++;
+            fgets(buffer, BUFFER_SIZE, file);
+        }
+    }
+    printf("/%d lines were read successfully/\n", line);
+    printf("/Unable to read %d lines/\n", *error);
+    return line;
+} //----------------------------------------------------------------------------------------
+
+int check_input(char *input, record *records, int line) {  // input validation function --------------------------------------------
+    if (strchr(input, '\n')== NULL){
+        printf("Input is too long.\n");
+        while(getchar() != '\n'){}                         //  reads every char until \n and cleans buffer
+        return 2;
+    }
+    else {
+        input[strcspn(input, "\n")] = '\0';
+        if (strcasecmp(input, "end") == 0) {
+            printf("Program stopped.\n");
+            return 0;
+        }
+        else{
+            int match_found = 0;
+            for(int i = 0; i < line;  i++) {
+                if (strcasecmp(input, records[i].room) == 0) {
+                    match_found = 1;
+                }
+            }
+            if(match_found){
+                return 1;
+            }
+            else{
+                printf("ERROR. Invalid input OR ROOM '%s' does NOT exist.\n", input);
+                printf("----------------------------------\n\033[4mVALID ROOMS:\033[0m\n");
+
+                int same_room;
+                for(int i = 0; i < line; i++) {
+                    same_room = 0;
+                    for(int j = 0  ; j < i; j++){
+                        if (strcmp(records[i].room, records[j].room) == 0){
+                            same_room =1;
+                            break;
+                        }
+                    }
+                    if(!same_room){
+                        printf("%s\n",records[i].room);                    }
+                }
+                printf("----------------------------------\n");
+                return 2;
+            }
+        }
+    }
+}   // ----------------------------------------------------------------------------------
+
+void print_temp(char *input, record *records, int line){                  // print output function
+    for (int i = 0; input[i] != '\0'; i++) {
+        input[i] = (char)toupper(input[i]);
+    }
+    printf("\n\033[4m%s\033[0m\n", input);
+    for (int i = 0; i < line; i++){
+        if(strcasecmp(records[i].room, input)== 0){
+            printf("%4.1f", records[i].temp);
+            if (records[i].temp < 0 || records[i].temp > 30){
+                printf(" X");
+            }
+            else{
+                printf(" ");
+                int dash = (int)(records[i].temp/0.5);
+                for(int j = 0; j < dash; j++){
+                    printf("-");
+                }
+            }
+            printf("\n");
+        }
+    }
+}
+
+int main(){
+    FILE *file;
+    char input[INPUT_SIZE];
+    char buffer[BUFFER_SIZE];
+    bool prog_run = true;
+    record records[ARRAY_SIZE];
+    int line = 0;                // initially no lines read
+    int error = 0;               // initially no errors detected while reading file
+
+    file = fopen("Temperatures.circ", "r");
+
+    if (file == NULL) {
+        fprintf(stderr, "Error opening file.\n");
+        return 1;
+    }
+   fgets(buffer, BUFFER_SIZE, file);                                    // read the 1st line and discard (as we know it's a header)
+
+    line =fill_struct(file, records, buffer, line, &error);                           // function 1: fill in the array of structures
+
+    fclose(file);
+
+    while(prog_run) {
+
+
+        printf("Enter a room to display temperatures inside OR 'end' to stop: ");
+
+        if (fgets(input, INPUT_SIZE, stdin) != NULL) {
+
+            int status = check_input(input, records, line);                        // function 2: validate input
+
+            if (status == 1) {
+                print_temp(input, records, line);                                  // function 3: print the result
+            }
+            else if(status == 0){
+                prog_run = false;
+            }
+            else{                                                                  // when status = 2
+                prog_run = true;
+            }
+        }
+        else{
+            fprintf(stderr, "Error reading input.\n");
+            prog_run=false;
+        }
+    }
+    return 0;
+}
